@@ -15,26 +15,28 @@ O robot só consegue movimentar-se na horizontal ou na vertical.
 
 def area(p,mapa):
     vis=[]
-    print(area1(p,mapa,vis))
+    area1(p,mapa,vis)
+    print(vis)
     return len (vis)
 
-def area1(p,mapa,vis):
+def         area1(p,mapa,vis):
     x = p[0]
     y = p[1]
     vis.append(p)
-    if x+1==len(mapa[1]) or y+1==len(mapa[1]):
-        return 0
+    #if and x > -1 and x < 5 and y > -1 and y < 5:
 
-    else:
+    if x+1<5:
         if mapa[x+1][y] == '.' and (x+1,y) not in vis:
             area1((x+1,y),mapa,vis)
+    if y+1<5:
         if mapa[x][y+1] == '.' and (x,y+1) not in vis:
-            area1((x, y+1), mapa, vis)
-        if mapa[x-1][y] == '.' and (x-1,y) not in vis:
+           area1((x, y+1), mapa, vis)
+    if x-1>0:
+        if mapa[x - 1][y] == '.' and (x - 1, y) not in vis:
             area1((x-1, y), mapa, vis)
+    if y-1>0:
         if mapa[x][y-1] == '.' and (x,y-1) not in vis:
             area1((x, y-1), mapa, vis)
-
 
 
 
