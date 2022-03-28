@@ -1,5 +1,5 @@
-
-
+'''
+PYCHARM_DEBUG=True
 def fw(adj):
     dist = {}
     for o in adj:
@@ -17,6 +17,7 @@ def fw(adj):
                 if dist[o][k] + dist[k][d] < dist[o][d]:
                     dist[o][d] = dist[o][k] + dist[k][d]
     return dist
+
 
 def tamanho(ruas):
     adj = {}
@@ -43,7 +44,10 @@ def main():
     ruas = ["raio","central","liberdade","chaos","saovictor","saovicente","saodomingos","souto","capelistas","anjo","taxa"]
     print("in:", ruas)
     print("out:", tamanho(ruas))
-
-
-if __name__ == '__main__':
-    main()
+    '''
+def main():
+    print("2")
+    print("Hello World")
+    print(")")
+    print("hell")
+    return 0

@@ -1,5 +1,4 @@
 
-
 def fw(adj):
     dist = {}
     for o in adj:
@@ -17,6 +16,7 @@ def fw(adj):
                 if dist[o][k] + dist[k][d] < dist[o][d]:
                     dist[o][d] = dist[o][k] + dist[k][d]
     return dist
+
 
 def tamanho(ruas):
     adj = {}
@@ -38,12 +38,8 @@ def tamanho(ruas):
                 maior = dists[a][b]
     return maior
 
-def main():
-    print("<h3>tamanho</h3>")
-    ruas = ["raio","central","liberdade","chaos","saovictor","saovicente","saodomingos","souto","capelistas","anjo","taxa"]
-    print("in:", ruas)
-    print("out:", tamanho(ruas))
+print("<h3>tamanho</h3>")
+ruas = ["raio","central","liberdade","chaos","saovictor","saovicente","saodomingos","souto","capelistas","anjo","taxa"]
+print("in:", ruas)
 
-
-if __name__ == '__main__':
-    main()
+print("out:", tamanho(ruas))
