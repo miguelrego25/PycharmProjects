@@ -107,7 +107,7 @@ def amigos(s):
                 dic[scdnome] = searchconhecidos(scdnome, conhecidos)
 
     print(dic)
-    newlist = sorted(dic.items(), key=lambda x: len(x[1]),reverse=True)
+    newlist = sorted(dic.items(), key=lambda x: len(x[1]), reverse=True)
     return len(newlist[0][1])
 
 
