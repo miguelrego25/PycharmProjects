@@ -106,7 +106,7 @@ def amigos(s):
             if scdnome not in dic.keys():
                 dic[scdnome] = searchconhecidos(scdnome, conhecidos)
 
-    print(dic)
+    print(dic )
     newlist = sorted(dic.items(), key=lambda x: len(x[1]), reverse=True)
     return len(newlist[0][1])
 
