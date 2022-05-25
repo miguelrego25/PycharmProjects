@@ -4,6 +4,7 @@ Implemente uma função que descubra o maior conjunto de pessoas que se conhece
 mutuamente. A função recebe receber uma sequências de pares de pessoas que se
 conhecem e deverá devolver o tamanho do maior conjunto de pessoas em que todos
 conhecem todos os outros.
+    conhecidos ={('pedro', 'maria'), ('pedro', 'jose'), ('pedro', 'manuel'), ('maria', 'jose'), ('maria', 'francisca'), ('jose', 'francisca'), ('francisca', 'manuel')}
 
 
 //        30%
@@ -82,8 +83,8 @@ def amigos(conhecido):
                 maxi = s
             nameschecked.append(segundo)
     return maxi
-'''
 
+#%40
 def searchconhecidos(primeiro,conhecidos):
     listamigos = []
     for fstnome,scdnome in conhecidos:
@@ -99,6 +100,10 @@ def amigos(s):
     dic = {}
     max = 0
 
+    if len(conhecidos) == 0:
+        return 0
+
+
     for fstnome,scdnome in conhecidos:
         if fstnome != scdnome:
             if fstnome not in dic.keys():
@@ -111,10 +116,61 @@ def amigos(s):
     return len(newlist[0][1])
 
 
+'''
 
+#%90 not mine
+def constroi(lista):
+    dic = {}
+    for grupo in lista:
+        for pessoa in grupo:
+            if pessoa not in dic:
+                dic[pessoa] = set(grupo) - {pessoa}
+            else:
+                dic[pessoa] = dic[pessoa] | set(grupo) - {pessoa}
+    return dic
+
+
+def complete(n, s):
+    return len(s) == n
+
+
+def extensions(pessoas, s, dic, impossiveis):
+    r = [pessoa for pessoa in pessoas if pessoa not in s and pessoa not in impossiveis]
+    errados = []
+    for i in range(len(r)):
+        for d in s:
+            if r[i] not in dic[d]:
+                errados.append(r[i])
+                break
+    for i in errados:
+        r.remove(i)
+    return r
+
+
+def aux(pessoas, dic, n, s, impossiveis):
+    if complete(n, s):
+        return True
+    for x in extensions(pessoas, s, dic, impossiveis):
+        s.add(x)
+        if aux(pessoas, dic, n, s, impossiveis):
+            return True
+        impossiveis.add(x)
+        s.remove(x)
+    return False
+
+
+def amigos(conhecidos):
+    dic = constroi(conhecidos)
+    pessoas = list(dic.keys())
+    if not pessoas:
+        return 0
+    for n in range(len(pessoas) + 1, 1, -1):
+        if aux(pessoas, dic, n, set(), set()):
+            return n
 def main():
     print("<h3>amigos</h3>")
-    conhecidos = conhecidos = {('pedro', 'maria'), ('pedro', 'jose'), ('pedro', 'manuel'), ('maria', 'jose'), ('maria', 'francisca'), ('jose', 'francisca'), ('francisca', 'manuel')}
+    conhecidos ={('pedro', 'maria'), ('pedro', 'jose'), ('pedro', 'manuel'), ('maria', 'jose'), ('maria', 'francisca'), ('jose', 'francisca'), ('francisca', 'manuel')}
+    #conhecidos = {('pedro', 'maria'),('maria','pedro'),('maria','Maria')}
     print("in:", conhecidos)
     print("out:", amigos(conhecidos))
 
